@@ -3,6 +3,8 @@ import { Grid } from "@giphy/react-components";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 import { useState } from "react";
 import { useEffect } from "react";
+import GifInput from "./ui/gifInput";
+import ShowGif from "./ui/showGif";
 
 export default function Home() {
   const [gifSearchText, setGifSearchText] = useState<string>("");
@@ -64,24 +66,16 @@ export default function Home() {
     return currentTime;
   };
   return (
-    <div className="bg-cover bg-slate-400 w-full h-screen flex justify-center items-center">
+    <div className="flex items-center justify-center w-full h-screen bg-cover bg-slate-400">
       <main>
         <div className="w-[437px] h-[340px] flex flex-col bg-white rounded-[4px] pt-[20px]">
-          <div className="overflow-auto w-[430px]  px-[16px] pb-[13px] relative h-[247px] ">
+          <div className="overflow-auto w-[430px]  px-[16px] pb-[13px] relative h-[247px]">
             {isGifMenuOpen && (
-              <div className="overflow-hidden absolute ">
-                <Grid
-                  hideAttribution={true}
-                  width={385}
-                  columns={3}
-                  fetchGifs={fetchGifs}
-                  onGifClick={(gif, e) => {
-                    e.preventDefault();
-                    handleGifSelect(gif.images.fixed_height.url);
-                  }}
-                  className="bg-white"
-                />
-              </div>
+              <ShowGif
+                fetchGifs={fetchGifs}
+                handleGifSelect={handleGifSelect}
+                isOpen={isGifMenuOpen}
+              />
             )}
             {messages.map((msg, index) => (
               <div key={index} className="text-[#99A2AD] text-sm/[17px]">
@@ -127,15 +121,11 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="px-[16px] py-[13px] h-[62] bg-[#FAFBFC] mt-auto border border-[#DCE1E5] rounded-[4px]">
-            <input
-              placeholder="Напишите сообщение:"
-              value={inputText}
-              onChange={(e) => handleInputChange(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="placeholder:roboto focus:outline-none text-sm/[17px] w-[405px] h-[36px] bg-white rounded-[6px] border border-[#D3D9DE] text-black py-[8px] px-[10px]"
-            />
-          </div>
+          <GifInput
+            value={inputText}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+          />
         </div>
       </main>
       <footer></footer>
