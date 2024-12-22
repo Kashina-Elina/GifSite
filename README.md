@@ -13,7 +13,10 @@
 - Подумайте про управление с клавиатуры и доступность.
 - Помните про скорость загрузки и производительность.
 - Верстка должна совпадать с дизайном. (PerfectPixel)
+
   
+  ![gifSite](https://github.com/user-attachments/assets/7e8e6c88-7d1a-4206-bcb8-6b96a41565c6)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
